@@ -1,6 +1,7 @@
 import type { JSX } from "react/jsx-runtime"
 import type { Book } from "../../types"
 import ItemBook from "../bookItem"
+import style from './style.module.css'
 
 type BookListProps = {
     books: Book[]
@@ -12,7 +13,7 @@ export default function BookList({ books, onRemove }: BookListProps): JSX.Elemen
     const arrayBooks: Book[] = books
 
     return (
-        <section className={`${Style.con}`}>
+        <section className={`container ${style.container}`}>
             {arrayBooks.map((book, index) =>
 
                 <ItemBook key={index} item={book} onRemove={onRemove} />

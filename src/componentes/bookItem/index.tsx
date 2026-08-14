@@ -10,11 +10,11 @@ export default function ItemBook({ item, onRemove }: ItemBookProps): JSX.Element
 
     return (
         <div>
-            <p>Nome livro: {item.name}</p>
-            <p>Descrição: {item.description} </p>
-            <p>data lançamento {item.date}</p>
-            <p>{item.id}</p>
-            <button onClick={() => onRemove(item.id)}>Remover</button>
+            <p> <strong>Nome do livro:</strong> {item.name}</p>
+            <p> <strong>Descrição:</strong> {item.description} </p>
+            <p><strong>data lançamento: </strong>  {item.date}</p>
+
+            <button onClick={() => onRemove(item._id)}>Remover</button>
         </div>
     )
 }
