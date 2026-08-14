@@ -3,7 +3,7 @@ import type { Book } from "../../types";
 
 type ItemBookProps = {
     item: Book
-    onRemove: (id: number) => void
+    onRemove: (id: string) => void
 }
 
 export default function ItemBook({ item, onRemove }: ItemBookProps): JSX.Element {

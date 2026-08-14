@@ -5,21 +5,28 @@ import BookList from "./componentes/booklist"
 import axios from "axios"
 import FormBook from "./componentes/bookForm"
 
+
+
+
+
+
+
+
+
+
 const URL_LINK: string = "https://crudcrud.com/api/81dbc3ae67a346f580d295425a31949a/livro"
 
 function App() {
   const [books, setBooks] = useState<Book[]>([])
-  const [nome, setNome] = useState<string>('')
-  const [descricao, setDescricao] = useState<string>('')
-  const [date, setDate] = useState<string>('')
-
   useEffect(() => {
 
     async function getBooks() {
       try {
         const res = await axios.get<Book[]>(URL_LINK)
         setBooks(res.data)
+
       } catch (error) {
+        console.error('ERRO AO CHAMAR API', error);
 
       }
     }
@@ -28,27 +35,14 @@ function App() {
   }
     , [])
 
-
-
-
-
-  const handlerSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const book: Book = {
-      name: nome,
-      description: descricao,
-      date: date
-    }
+  const addApi = async (book: Book) => {
     try {
       // 🟢 Envia o 'book' e recebe o item cadastrado com ID em 'res.data'
-      const res = await axios.post(URL_LINK, book)
+      const res = await axios.post<Book>(URL_LINK, book)
 
       // 🟢 Adiciona res.data ao estado
       setBooks((prev) => [...prev, res.data])
-      setNome('')
-      setDescricao('')
-      setDate('')
+
 
     }
     catch (error) {
@@ -56,33 +50,33 @@ function App() {
 
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-  const handleRemove = async (id: number) => {
+  const handleRemove = async (id: string) => {
     try {
-      await axios.delete(`https://crudcrud.com/api/81dbc3ae67a346f580d295425a31949a/livro/${id}`)
+      await axios.delete(`${URL_LINK}/${id}`)
       setBooks((prev) => prev.filter((item) => item._id !== id))
     } catch (error) {
       console.error('erro ao deletar livro', error);
 
     }
   }
-
   return (
     <>
-      <FormBook date={date} descricao={descricao} nome={nome} onCadastrar={handlerSubmit} setDate={setDate} setDescricao={setDescricao} setNome={setNome} />
+      <FormBook onCadastrar={addApi} />
       <BookList books={books} onRemove={handleRemove} />
     </>
   )
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+

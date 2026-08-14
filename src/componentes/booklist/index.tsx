@@ -5,7 +5,7 @@ import style from './style.module.css'
 
 type BookListProps = {
     books: Book[]
-    onRemove: (id: number) => void
+    onRemove: (id: string) => void
 }
 
 export default function BookList({ books, onRemove }: BookListProps): JSX.Element {
