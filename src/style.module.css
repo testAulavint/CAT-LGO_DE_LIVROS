@@ -1,0 +1,9 @@
+.div {
+    --cor-principal: rgb(54, 54, 112);
+
+
+    min-height: 100vh;
+    background-color: var(--cor-principal);
+    padding: 0.5rem;
+    padding-bottom: 8vh;
+}

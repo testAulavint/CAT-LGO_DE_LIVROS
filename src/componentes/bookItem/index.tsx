@@ -1,5 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import type { Book } from "../../types";
+import style from './style.module.css'
 
 type ItemBookProps = {
     item: Book
@@ -9,12 +10,12 @@ type ItemBookProps = {
 export default function ItemBook({ item, onRemove }: ItemBookProps): JSX.Element {
 
     return (
-        <div>
-            <p> <strong>Nome do livro:</strong> {item.name}</p>
-            <p> <strong>Descrição:</strong> {item.description} </p>
-            <p><strong>data lançamento: </strong>  {item.date}</p>
+        <div className={style.item}>
+            <p className={style.name} >  <strong className={style.destaque}>Nome do livro:</strong> {item.name}</p>
+            <p className={style.geral}> <strong className={style.destaque} >Descrição:</strong> {item.description} </p>
+            <p className={style.geral} ><strong className={style.destaque} >data lançamento: </strong>  {item.date}</p>
 
-            <button onClick={() => onRemove(item._id)}>Remover</button>
+            <button className={style.btn} onClick={() => onRemove(item._id)}>Remover</button>
         </div>
     )
 }
