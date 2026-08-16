@@ -1,1 +1,29 @@
-.container {}
+@media (min-width:620px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+    }
+
+}
+
+@media (min-width:1040px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+
+    }
+
+}
+
+@media (min-width:1200px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+
+    }
+
+}
