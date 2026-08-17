@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { bookMokados } from "./dadosMokados"
+import { useEffect, useState, type JSX } from "react"
+
 import type { Book } from "./types"
 import BookList from "./componentes/booklist"
 import axios from "axios"
@@ -15,12 +15,11 @@ import style from './style.module.css'
 
 
 
-const URL_LINK: string = "https://crudcrud.com/api/2d61db38d29344aaa8140bfb85bd1623/livro"
+const URL_LINK: string = "https://crudcrud.com/api/3ff8cafde0094b96851117131e7e964a/livro"
 
-function App() {
+function App(): JSX.Element {
   const [books, setBooks] = useState<Book[]>([])
 
-  const [editar, setEditar] = useState<boolean>(false)
 
 
 
@@ -75,8 +74,8 @@ function App() {
     <>
       <div className={style.div}>
 
-        <FormBook editar={editar} setEditar={setEditar} onCadastrar={addApi} />
-        <BookList editar={editar} setEditar={setEditar} setBooks={setBooks} books={books} onRemove={handleRemove} />
+        <FormBook onCadastrar={addApi} />
+        <BookList setBooks={setBooks} books={books} onRemove={handleRemove} />
       </div>
     </>
   )

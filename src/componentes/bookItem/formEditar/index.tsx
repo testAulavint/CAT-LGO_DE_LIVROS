@@ -14,7 +14,7 @@ type EditarFormProps = {
 }
 
 
-const URL = 'https://crudcrud.com/api/2d61db38d29344aaa8140bfb85bd1623/livro'
+const URL = ' https://crudcrud.com/api/3ff8cafde0094b96851117131e7e964a/livro'
 
 
 function EditarForm({ descricao, setDescricao, id, item, setBooks, setEditar }: EditarFormProps) {
