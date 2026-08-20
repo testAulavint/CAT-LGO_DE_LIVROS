@@ -21,7 +21,7 @@ function App(): JSX.Element {
   const [books, setBooks] = useState<Book[]>([])
 
   const handlerUpdateStatus = async (id: string) => {
-    const bookToUpdate = books.find((item) => item._id === id)
+    const bookToUpdate: Book = books.find((item) => item._id === id)
     if (!bookToUpdate) return;
 
     try {
@@ -30,7 +30,7 @@ function App(): JSX.Element {
         author: bookToUpdate.author,
         status: "Concluido"
       })
-      setBooks((prev) =>
+      setBooks((prev: Book[]) =>
         prev.map((item) => item._id === id ? { ...item, status: "Concluido" } : item));
     } catch (erro) {
       console.error("erro na requisição", erro);
