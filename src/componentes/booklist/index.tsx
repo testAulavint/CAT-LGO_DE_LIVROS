@@ -5,29 +5,17 @@ import style from './style.module.css'
 
 
 type BookListProps = {
-    editar: boolean
-    setEditar: React.Dispatch<React.SetStateAction<boolean>>
     books: Book[]
     onRemove: (id: string) => void
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    concluir: (id: string) => void
 }
 
-export default function BookList({ books, onRemove, setBooks, editar, setEditar }: BookListProps): JSX.Element {
-
-    const arrayBooks: Book[] = books
-
-    return (<>
-
-
-
-
-        <section className={` ${style.container}`}>
-            {arrayBooks.map((book, index) =>
-
-                <ItemBook setEditar={setEditar} editar={editar} setBooks={setBooks} key={index} item={book} onRemove={onRemove} />
-            )}
-
+export default function BookList({ books, onRemove, concluir }: BookListProps): JSX.Element {
+    return (
+        <section className={style.container}>
+            {books.map((book, index) => (
+                <ItemBook key={book._id || index} item={book} onRemove={onRemove} concluir={concluir} />
+            ))}
         </section>
-    </>
     )
 }

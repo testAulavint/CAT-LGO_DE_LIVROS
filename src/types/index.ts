@@ -1,6 +1,6 @@
 export type Book = {
     _id?: string
-    name: string
-    description: string
-    date: string
+    title: string
+    author: string
+    status?: "Pendente" | "Concluido"
 }

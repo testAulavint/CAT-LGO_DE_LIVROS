@@ -10,31 +10,24 @@ type FormBookProps = {
 
 
 export default function FormBook({ onCadastrar }: FormBookProps): JSX.Element {
-
-    const [nome, setNome] = useState<string>('')
-    const [descricao, setDescricao] = useState<string>('')
-    const [date, setDate] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
+    const [autor, setAutor] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [erro, setErro] = useState<boolean>(false)
 
-
-
-
-    const handlerSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handlerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (!nome || !descricao) {
-            return setErro((prev) =>
-                prev === true ? prev : !prev
-            )
+        if (!title || !autor) {
+            return setErro(true)
         }
 
-        onCadastrar({ name: nome, description: descricao, date: date })
+        onCadastrar({ title: title, author: autor })
 
-        setNome('')
-        setDescricao('')
-        setDate('')
-        setIsOpen((prev: boolean) => !prev)
+        setTitle('')
+        setAutor('')
+        setErro(false)
+        setIsOpen(false)
     }
     return (
         <>
@@ -42,11 +35,10 @@ export default function FormBook({ onCadastrar }: FormBookProps): JSX.Element {
             {isOpen &&
                 <form onSubmit={handlerSubmit} className={style.Formulario}>
                     <button type="button" className={style.formCancel} onClick={() => setIsOpen((prev) => !prev)}> x </button >
-                    <input className={`${style.inputGeral} ${style.inputName} `} type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
-                    <textarea className={`${style.inputGeral} ${style.textArea}`} placeholder="Adicione uma descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)}></textarea>
-                    <input className={`${style.inputGeral}  ${style.dataLancamento}`} type="text" placeholder="Data-Lançamento" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <input className={`${style.inputGeral} ${style.inputName} `} type="text" placeholder="Titulo do Livro" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <textarea className={`${style.inputGeral} ${style.textArea}`} placeholder="Autor" value={autor} onChange={(e) => setAutor(e.target.value)}></textarea>
                     {erro && <p className={style.erro}> Preencha todos os campos </p>}
-                    <button className={style.btnAct} disabled={!nome} type="submit">Adicionar</button>
+                    <button className={style.btnAct} disabled={!title} type="submit">Adicionar</button>
 
 
                 </form >
